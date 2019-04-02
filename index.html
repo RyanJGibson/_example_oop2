@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+	<head>	
+		<title>test</title>
+	</head>
+	
+	<body>
+		<script>
+			var require = {
+				callback: function() {
+					require(['config']);
+				}
+			};
+		</script>
+		
+		<!--<script data-main="bin/dist/bos" src="bin/lib/require.js"></script>-->
+		<script data-main="bin/app/config" src="bin/require.js"></script>
+		
+		<script>
+			require.config({ waitSeconds: 200 });
+		</script>
+		
+		<div class="stage" id="IDstage">	
+		</div>
+	</body>
+	
+</html>
