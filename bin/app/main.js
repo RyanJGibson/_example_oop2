@@ -1,23 +1,96 @@
-define(['static_example', 
-    'instance_example', 
-    'base', 
-    'extended',
+define([
+    'PIXI',
     'baseAnimal',
     'dog',
-    'cat'],
-function(StaticExample, 
-    InstanceExample, 
-    Base, 
-    Extended,
+    'cat',
+    'UI',
+    'factory'],
+function(
+    PIXI,
     BaseAnimal,
     Dog,
-    Cat) {
-  'use strict';
+    Cat,
+    UI,
+    Factory) {
+    
+    'use strict';
+
+    //Our logic entry point:
+    //Main sets our game loop and acts as a 'Mediator' (Mediator design pattern
+    //
 
     var Main = function () {
 		console.log("main init");
-		this.test();
+        
+        this.initStage();
+        
+        UI.init(this);
+        this.bindUIEvents();
+        UI.createButtons();
+
+        Factory.init(this); 
+        this.renderer.render(this.cStage);
+
+		//this.test();
     };
+
+
+    Main.prototype.initStage = function(){
+        this.nCanvasWidth = 640;
+        this.nCanvasHeight = 480;
+    
+        console.log("this.nCanvasWidth: " + this.nCanvasWidth);
+        console.log("this.nCanvasHeight: " + this.nCanvasHeight);
+        
+        this.renderer = PIXI.autoDetectRenderer(this.nCanvasWidth,this.nCanvasHeight,{
+            backgroundColor: 0xFFCCCC
+        });
+        
+        this.cStage = new PIXI.Container();
+        $("#IDstage").append(this.renderer.view);
+        
+        this.devText = new PIXI.Text("Dev Text", {fontFamily:"Verdana, Geneva, sans-serif", fontSize:"20px", fill:"#000000"});
+        this.cStage.addChild(this.devText);
+
+        this.devText.text = 'sadfadf'
+        this.draw();
+
+    };
+
+    Main.prototype.draw = function(){
+        this.renderer.render(this.cStage);
+        window.requestAnimationFrame(function(){
+            this.draw();
+        }.bind(this));
+    };
+
+
+
+
+    Main.prototype.bindUIEvents = function(){
+        UI.bindAddDog(this.onAddDog.bind(this));
+        UI.bindAddCat(this.onAddCat.bind(this));
+        UI.bindRemoveDog(this.onRemoveDog.bind(this));
+        UI.bindRemoveCat(this.onRemoveCat.bind(this));
+    };
+
+
+    Main.prototype.onAddDog = function(){
+        console.log('onAddDog');
+    };
+    Main.prototype.onRemoveDog = function(){
+        console.log('onRemoveDog');
+    };
+    Main.prototype.onAddCat = function(){
+        console.log('onAddCat');
+    };
+    Main.prototype.onRemoveCat = function(){
+        console.log('onRemoveCat');
+    };
+
+
+
+
 	
 	Main.prototype.test = function(){
         /*

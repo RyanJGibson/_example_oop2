@@ -23,6 +23,9 @@ require.config({
 	"Log":"log",
 	"Star":"star",
 	"Bubble":"bubble"*/
+
+	"PIXI": "../lib/pixi_v_4_3_2",
+	"jQuery": "../lib/jquery_3_3_1",
 	
   },
 	shim: {
@@ -44,8 +47,8 @@ define(["main","jQuery"],
 });*/
 
 
-define(["main"],
-	function (Game){
+define(["main",'jQuery'],
+	function (Game, jQuery){
 		window.game = new Game();
 	}
 );
