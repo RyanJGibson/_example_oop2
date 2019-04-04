@@ -4,7 +4,7 @@ define([
     'dog',
     'cat',
     'stage',
-    'UI',
+    'ui',
     'factory',
     'event_manager'],
 function(

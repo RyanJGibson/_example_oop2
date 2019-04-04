@@ -6,6 +6,7 @@
 		<style>
 		body {
 		  background-color: #DDDDDD;
+		  font-family::'Arial';
 		}
 
 
@@ -45,6 +46,16 @@
 			JS OOP Example
 		</div>
 		<div class="stage" id="IDstage">	
+		</div>
+		<div style='max-width:600px; margin:0 auto;'>
+			A JS OOP example utiilising PIXI & RequireJS.
+			Examples of encapsulation, composition, inheritance, abstraction and polymorphism are demonstrated, as are a couple of design patterns.<br><br>
+
+			The 'Dog' and 'Cat' modules extend 'BaseAnimal'.
+			'BaseAnimal' takes care of generic behaviour, like making the animals move around and 'talk'. Specific properties are overridden in 'Dog' and 'Cat' (such as their graphics), and the 'Cat's behaviour is extended to also enable them to purr.
+			<br><br>
+
+			Main acts as a 'Mediator' to kick things off. A basic 'Factory' design pattern is used to create, remove and update animals. Examples of 'finite state' patterns can be observed within the animal modules, and a basic event management system is also demonstrated.
 		</div>
 	</body>
 	
