@@ -1,5 +1,5 @@
 # _example_oop2
-A further OOP example utiilising RequireJS.  
+A further OOP example utiilising PXI & RequireJS.  
 Examples of encapsulation, composition, inheritance, abstraction and polymorphism are demonstrated, as are a couple of design patterns.
 
 The 'Dog' and 'Cat' modules extend 'BaseAnimal'.  
