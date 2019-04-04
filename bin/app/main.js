@@ -61,13 +61,13 @@ function(
         EventManager.registerListener('onTick', this, this.onTick);
     };
 
-
     Main.prototype.onAddDog = function(){
         console.log('onAddDog');
         Factory.addNewAnimal('dog');
     };
     Main.prototype.onRemoveDog = function(){
         console.log('onRemoveDog');
+        Factory.removeAnimal('dog');
     };
     Main.prototype.onAddCat = function(){
         console.log('onAddCat');
@@ -75,10 +75,8 @@ function(
     };
     Main.prototype.onRemoveCat = function(){
         console.log('onRemoveCat');
+        Factory.removeAnimal('cat');
     };
-
-
-
 
     //Main update event
     Main.prototype.onTick = function(){

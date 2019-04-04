@@ -18,7 +18,7 @@ define([
         console.log("this.nCanvasHeight: " + this.nCanvasHeight);
         
         this.renderer = PIXI.autoDetectRenderer(this.nCanvasWidth,this.nCanvasHeight,{
-            backgroundColor: 0xFFCCCC
+            backgroundColor: 0xCCCCCC
         });
         
         this.cStage = new PIXI.Container();

@@ -16,7 +16,7 @@ define([
 		console.log("BaseAnimal init: " + nID);
 		this.nID = nID;
 		this.cGameEnvironment = cGameEnvironment;
-		this.sAnimalType = 'baseAnimal';
+		this.cContainer = new PIXI.Container();
 		this.sState = 'readyForNewState';
 
 		this.aStates = ['wait', 'initWalk'];
@@ -36,12 +36,13 @@ define([
 	};
 
 	BaseAnimal.prototype.initProperties = function(){
+		this.sAnimalType = 'baseAnimal';
 		this.nSpeed = 1;
 	};
 
 	BaseAnimal.prototype.createGraphic = function(){
 		console.log(this.nX + " " + this.nY);
-		this.cContainer = new PIXI.Container();
+		
 		this.gra =  new PIXI.Graphics();
 		this.gra.beginFill(0xFF0000);
 		this.gra.drawCircle(0,0,50);
@@ -142,6 +143,10 @@ define([
 			this.nY = this.nMaxY;
 			this.nVY = this.nVY*-1;
 		}
+	};
+
+	BaseAnimal.prototype.destroy = function(){
+		this.cContainer.destroy();
 	};
 	return BaseAnimal;
 });

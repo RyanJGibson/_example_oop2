@@ -31,9 +31,24 @@ define(
 		oAnimal.init(this.nAnimalUniqueIDCount, this.cGameEnvironment);
 		this.nAnimalUniqueIDCount++;
 
-		oAnimal.talk();
-
 		console.log(this.aAllAnimals);
+	};
+
+
+	Factory.removeAnimal = function(sAnimal){
+		for(let i=0;i<this.aAllAnimals.length;i++){
+			var oAnimal = this.aAllAnimals[i];
+			if(oAnimal.sAnimalType == sAnimal){
+				var nElementToRemove = i;
+			}
+		}
+
+		oAnimal = this.aAllAnimals[nElementToRemove];
+		if(oAnimal){
+			oAnimal.destroy();
+			this.aAllAnimals.splice(nElementToRemove,1);
+		}
+
 	};
 
 	

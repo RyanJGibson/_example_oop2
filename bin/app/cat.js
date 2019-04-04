@@ -14,6 +14,7 @@ define(['baseAnimal'],function(BaseAnimal) {
 	//Override base functionality or add specific functionality 
 
 	Cat.prototype.initProperties = function(){
+		this.sAnimalType = 'cat';
 		this.nSpeed = 2;
 		this.nScale = 0.3;
 	};

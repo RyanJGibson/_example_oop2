@@ -4,6 +4,7 @@ define(['baseAnimal'],function(BaseAnimal) {
 	var Dog = function () {
 		console.log("Dog");
 		BaseAnimal.call();
+
 	};
 
 	Dog.prototype = Object.create(BaseAnimal.prototype);
@@ -15,6 +16,7 @@ define(['baseAnimal'],function(BaseAnimal) {
 	//Override base functionality or add specific functionality 
 
 	Dog.prototype.initProperties = function(){
+		this.sAnimalType = 'dog';
 		this.nSpeed = 1;
 		this.nScale = 0.3;
 	};
