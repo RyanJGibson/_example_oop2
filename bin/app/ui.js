@@ -1,45 +1,35 @@
-define(['PIXI'],function(PIXI) {
+define([
+	'PIXI',
+	'event_manager'
+	],
+	function(
+		PIXI,
+		EventManager
+		) {
   'use strict';
 
     var UI = {};
 
-    UI.init = function(oMain){
+    UI.init = function(oMain, cUI){
 		console.log('UI.Init');
-		this.cUI = new PIXI.Container();
-		oMain.cStage.addChild(this.cUI);
+		
+		this.cUI = cUI;
 
-		this.aButtons = [];
-
-	
-	};
-
-
-	UI.bindAddDog = function(fFunction){
-		this.onAddDog = fFunction;
-	};
-	UI.bindAddCat = function(fFunction){
-		this.onAddCat = fFunction;
-	};
-	UI.bindRemoveDog = function(fFunction){
-		this.onRemoveDog = fFunction;
-	};
-	UI.bindRemoveCat = function(fFunction){
-		this.onRemoveCat = fFunction;
+		this.createButtons();
 	};
 
 
 	UI.createButtons = function(){
-		this.createButton('ADD DOG', 120, 50, 65, 450, this.onAddDog.bind(this));	
-		this.createButton('REMOVE DOG', 180, 50, 220, 450, this.onRemoveDog.bind(this));	
-		this.createButton('ADD CAT', 120, 50, 390, 450, this.onAddCat.bind(this));	
-		this.createButton('REMOVE CAT', 180, 50, 545, 450, this.onRemoveCat.bind(this));	
+		this.aButtons = [];
+		this.createButton('ADD DOG', 120, 50, 65, 450, 'onAddDog');	
+		this.createButton('REMOVE DOG', 180, 50, 220, 450, 'onRemoveDog');	
+		this.createButton('ADD CAT', 120, 50, 390, 450, 'onAddCat');	
+		this.createButton('REMOVE CAT', 180, 50, 545, 450, 'onRemoveCat');	
 	};
 
 
 
-
-
-	UI.createButton = function(sLabel, nWidth, nHeight, nX, nY, fFunc){
+	UI.createButton = function(sLabel, nWidth, nHeight, nX, nY, sEventName){
 		console.log('UI.createButton');
 
 		var oButton = {};
@@ -67,8 +57,14 @@ define(['PIXI'],function(PIXI) {
 		oButton.cButton.interactive = true;
 		oButton.cButton.buttonMode = true;
 
+
+		
+
+
 		oButton.cButton.mousedown = oButton.cButton.touchstart = function(md){
-			fFunc();
+			//fFunc();
+			EventManager.dispatch(sEventName);
+
 		}.bind(this)
 
 
