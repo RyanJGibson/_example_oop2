@@ -16,9 +16,11 @@ define(['baseAnimal'],function(BaseAnimal) {
 	//Override base functionality or add specific functionality 
 
 	Dog.prototype.initProperties = function(){
+		_super_.initProperties();
 		this.sAnimalType = 'dog';
 		this.nSpeed = 1;
 		this.nScale = 0.3;
+		this.sGreeting = 'woof!';
 	};
 
 	Dog.prototype.createGraphic = function(){
@@ -41,9 +43,6 @@ define(['baseAnimal'],function(BaseAnimal) {
 		this.cContainer.position.y = this.nY;
 	};
 
-	Dog.prototype.talk = function(){
-		console.log('woof');
-	};
 
 
 	return Dog;

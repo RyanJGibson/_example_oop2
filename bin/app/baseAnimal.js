@@ -19,7 +19,7 @@ define([
 		this.cContainer = new PIXI.Container();
 		this.sState = 'readyForNewState';
 
-		this.aStates = ['wait', 'initWalk'];
+		this.aStates = ['wait', 'initWalk', 'initTalk'];
 		this.nMinX = 50;
 		this.nMaxX = 590;
 		this.nMinY = 50;
@@ -33,16 +33,17 @@ define([
 
 		this.initProperties();
 		this.createGraphic();
+		this.createTalkLabel();
 	};
 
 	BaseAnimal.prototype.initProperties = function(){
 		this.sAnimalType = 'baseAnimal';
 		this.nSpeed = 1;
+		this.sGreeting = 'hello';
 	};
 
 	BaseAnimal.prototype.createGraphic = function(){
 		console.log(this.nX + " " + this.nY);
-		
 		this.gra =  new PIXI.Graphics();
 		this.gra.beginFill(0xFF0000);
 		this.gra.drawCircle(0,0,50);
@@ -52,12 +53,20 @@ define([
 		this.cContainer.position.y = this.nY;
 	};
 
+	BaseAnimal.prototype.createTalkLabel = function(){
+		this.txt = new PIXI.Text(this.sGreeting , {fontFamily:"Verdana, Geneva, sans-serif", fontSize:"20px", fill:"#000000", align:'center'});
+		this.cContainer.addChild(this.txt);
+		this.txt.anchor.x = 0.5;
+		this.txt.anchor.y = 0.5;
+		this.txt.position.y = -35;
+		this.txt.visible = false;
+	};
+
 	BaseAnimal.prototype.talk = function(){
 		//So this could be an abstract function - never designed to be called directly
 		//so throw an error or something
 		console.log('hi - I really shouldnt be speaking');
 	};
-
 	BaseAnimal.prototype.sneeze = function(){
 		//Whereas this one could be designed to be called from extended modiles
 		console.log('achooo');
@@ -73,19 +82,21 @@ define([
 			case 'initWalk':
 				this.initWalk();
 			break;
-			case 'walk':
-				this.walk();
+			case 'walking':
+				this.walking();
 			break;
-			case 'talk':
+			case 'initTalk':
+				this.initTalk();
+			break;
+			case 'talking':
+				this.talking();
 			break;
 		}
 	};
 
 	BaseAnimal.prototype.stateUpdate = function(){
 		if(this.sState === 'readyForNewState'){
-			//console.log('asigning new state');
 			this.sState = this.aStates[parseInt(Math.random()*this.aStates.length)];
-			//console.log(this.sState);
 		}
 	};
 
@@ -99,31 +110,6 @@ define([
 		this.nY += this.nVY;
 		this.cContainer.position.x = this.nX;
 		this.cContainer.position.y = this.nY;
-	};
-
-	BaseAnimal.prototype.returnDirMultiplier = function(){
-		var aMultipliers = [-1,0,1];
-		return aMultipliers[parseInt(Math.random()*aMultipliers.length)];
-	};
-
-	BaseAnimal.prototype.wait = function(){
-		if(Math.random() > 0.9){
-			this.sState = 'readyForNewState';
-		}
-	};
-
-
-	BaseAnimal.prototype.initWalk = function(){
-		this.updateVelocity();
-		this.sState = 'walk';
-	};
-
-	BaseAnimal.prototype.walk = function(){
-		this.updatePosition();
-		if(Math.random() > 0.99){
-			this.sState = 'readyForNewState';
-		}
-		this.constrainToStage();
 	};
 
 	BaseAnimal.prototype.constrainToStage = function(){
@@ -144,6 +130,54 @@ define([
 			this.nVY = this.nVY*-1;
 		}
 	};
+
+	BaseAnimal.prototype.returnDirMultiplier = function(){
+		var aMultipliers = [-1,0.5,0,0.5,1];
+		return aMultipliers[parseInt(Math.random()*aMultipliers.length)];
+	};
+
+
+
+
+
+
+	BaseAnimal.prototype.wait = function(){
+		if(Math.random() > 0.9){
+			this.sState = 'readyForNewState';
+		}
+	};
+
+	BaseAnimal.prototype.initWalk = function(){
+		this.updateVelocity();
+		this.sState = 'walking';
+	};
+
+	BaseAnimal.prototype.walking = function(){
+		this.updatePosition();
+		if(Math.random() > 0.99){
+			this.sState = 'readyForNewState';
+		}
+		this.constrainToStage();
+	};
+
+
+	BaseAnimal.prototype.initTalk = function(){
+		this.nTalkCount = 0;
+		this.txt.visible = true;
+		this.sState = 'talking';
+	};
+	BaseAnimal.prototype.talking = function(){
+		this.nTalkCount++;
+		if(this.nTalkCount > 20){
+			this.txt.visible = false;
+		}
+		if(this.nTalkCount > 30){
+			this.sState = 'readyForNewState';
+		}
+	};
+
+
+
 
 	BaseAnimal.prototype.destroy = function(){
 		this.cContainer.destroy();

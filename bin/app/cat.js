@@ -14,9 +14,11 @@ define(['baseAnimal'],function(BaseAnimal) {
 	//Override base functionality or add specific functionality 
 
 	Cat.prototype.initProperties = function(){
+		_super_.initProperties();
 		this.sAnimalType = 'cat';
 		this.nSpeed = 2;
 		this.nScale = 0.3;
+		this.sGreeting = 'meow!';
 	};
 
 	Cat.prototype.createGraphic = function(){
@@ -46,10 +48,6 @@ define(['baseAnimal'],function(BaseAnimal) {
 		this.cContainer.addChild(this.gra);
 		this.cContainer.position.x = this.nX;
 		this.cContainer.position.y = this.nY;
-	};
-
-	Cat.prototype.talk = function(){
-		console.log('meow');
 	};
 
 

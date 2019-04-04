@@ -31,22 +31,17 @@ function(
 
         Stage.init(this);
 
-
         this.cGameEnvironment = new PIXI.Container();
         Stage.cStage.addChild(this.cGameEnvironment);
 
         this.cUI = new PIXI.Container();
         Stage.cStage.addChild(this.cUI);
 
-
         UI.init(this,this.cUI);
         Factory.init(this, this.cGameEnvironment); 
 
         this.bindUIEvents();     
-
-        this.sState = 'loading';
-        //this.sState = 'ready';
-
+        this.sState = '';
     };
 
 

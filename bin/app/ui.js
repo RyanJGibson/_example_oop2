@@ -37,7 +37,7 @@ define([
 		oButton.cButton = new PIXI.Container();
 
 		var gra = new PIXI.Graphics();
-		gra.beginFill(0xFF0000);
+		gra.beginFill(0x999999);
 		gra.drawRect(0,0,nWidth,nHeight);
 		oButton.cButton.addChild(gra);
 
