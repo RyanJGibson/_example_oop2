@@ -19,7 +19,7 @@ define(['baseAnimal'],function(BaseAnimal) {
 		_super_.initProperties();
 		this.sAnimalType = 'dog';
 		this.nSpeed = 1;
-		this.nScale = 0.3;
+		
 		this.sGreeting = 'woof!';
 	};
 

@@ -19,7 +19,7 @@ define([
 		this.cContainer = new PIXI.Container();
 		this.sState = 'readyForNewState';
 
-		this.aStates = ['wait', 'initWalk', 'initTalk'];
+		
 		this.nMinX = 50;
 		this.nMaxX = 590;
 		this.nMinY = 50;
@@ -37,7 +37,9 @@ define([
 	};
 
 	BaseAnimal.prototype.initProperties = function(){
+		this.aStates = ['wait', 'initWalk', 'initTalk'];
 		this.sAnimalType = 'baseAnimal';
+		this.nScale = 0.4;
 		this.nSpeed = 1;
 		this.sGreeting = 'hello';
 	};
@@ -58,7 +60,7 @@ define([
 		this.cContainer.addChild(this.txt);
 		this.txt.anchor.x = 0.5;
 		this.txt.anchor.y = 0.5;
-		this.txt.position.y = -35;
+		this.txt.position.y = -50;
 		this.txt.visible = false;
 	};
 
@@ -135,10 +137,6 @@ define([
 		var aMultipliers = [-1,0.5,0,0.5,1];
 		return aMultipliers[parseInt(Math.random()*aMultipliers.length)];
 	};
-
-
-
-
 
 
 	BaseAnimal.prototype.wait = function(){
