@@ -12,14 +12,14 @@ define(['baseAnimal'],function(BaseAnimal) {
 	
 	var _super_ = BaseAnimal.prototype;
 
-
 	//Override base functionality or add specific functionality 
 
 	Dog.prototype.initProperties = function(){
-		_super_.initProperties();
+		_super_.initProperties.apply(this);
+
 		this.sAnimalType = 'dog';
+		this.nScale = 0.5;
 		this.nSpeed = 1;
-		
 		this.sGreeting = 'woof!';
 	};
 

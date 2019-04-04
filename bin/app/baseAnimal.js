@@ -162,6 +162,7 @@ define([
 	BaseAnimal.prototype.initTalk = function(){
 		this.nTalkCount = 0;
 		this.txt.visible = true;
+		this.txt.text = this.sGreeting;
 		this.sState = 'talking';
 	};
 	BaseAnimal.prototype.talking = function(){
