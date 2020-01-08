@@ -8,6 +8,8 @@ Specific properties are overridden in 'Dog' and 'Cat' (such as their graphics), 
 
 Main acts as a 'Mediator' to kick things off.
 A basic 'Factory' design pattern is used to create, remove and update animals.
-Examples of 'finite state' patterns can be observed within the animal modules, and a basic event management system is also demonstrated..ko
+
+Examples of 'finite state' patterns can be observed within the animal modules, and a basic event management system is also demonstrated.
+
 
 Demo available here: http://bigbadspaceship.com/bbss/content/html5_stuff/oop_example/
